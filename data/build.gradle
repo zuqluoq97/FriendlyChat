@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+apply plugin: 'realm-android'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
+
+    dataBinding{
+        enabled = true
+    }
+
+    defaultConfig{
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode globalConfiguration["androidVersionCode"]
+    }
+
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation project(':domain')
+    implementation project(':library')
+    implementation globalDependencies.lombok
+    annotationProcessor globalDependencies.lombok
+    implementation globalDependencies.rxJava
+    implementation globalDependencies.firebaseAuth
+    implementation globalDependencies.playServicesAuth
+    implementation globalDependencies.firebaseDatabase
+    annotationProcessor globalDependencies.daggerCompiler
+    implementation globalDependencies.dagger
+}
+
+//apply plugin: 'com.google.gms.google-services'

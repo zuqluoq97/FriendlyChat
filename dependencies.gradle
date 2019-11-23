@@ -1,0 +1,87 @@
+allprojects{
+    repositories{
+        jcenter()
+    }
+}
+
+ext{
+    // Android
+    androidBuildToolsVersion = '29.0.2'
+    androidMinSdkVersion = 24
+    androidTargetSdkVersion = 29
+    androidCompileSdkVersion = 29
+    appCompatVersion = '1.0.2'
+    materialComponentsVersion = '1.2.0-alpha01'
+    swipeRefreshLayoutVersion = '1.1.0-alpha03'
+
+    // Library
+    rxJavaVersion = '1.3.8'
+    rxAndroidVersion = '1.2.1'
+    lombokVersion = '1.18.10'
+    daggerVersion = '2.25.2'
+    javaxAnnotationVersion = '1.3.2'
+    javaxInjectVersion = '1'
+    parcelerVersion = '1.1.12'
+    saripaarVersion = '2.0.3'
+    dartVersion = "2.0.1"
+
+    firebaseVersion = '19.1.0'
+    firebaseAnalyticsVersion = '17.2.1'
+    firebaseConfigVersion = '19.0.3'
+    firebaseMessagingVersion = '20.0.1'
+    firebaseAppIndexingVersion = '19.0.0'
+
+    playServicesAuthVersion = '17.0.0'
+    playServicesAppInviteVersion = '18.0.0'
+    playServicesAddsVersion = '18.3.0'
+
+    leakCanaryVersion = '1.3'
+    multidexVersion = '1.0.3'
+
+    // Testing
+    jUnitVersion = '4.12'
+    mockitoVersion = '1.9.5'
+
+    globalDependencies = [
+            appCompat: "androidx.appcompat:appcompat:${appCompatVersion}",
+            daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger: "com.google.dagger:dagger:${daggerVersion}",
+            lombok: "org.projectlombok:lombok:${lombokVersion}",
+            javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
+            leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
+            playServiceAuth: "com.google.android.gms:play-services-auth:${firebaseVersion}",
+            rxJava: "io.reactivex:rxjava:${rxJavaVersion}",
+            rxAndroid: "io.reactivex:rxandroid:${rxAndroidVersion}",
+            multiDex: "com.android.support:multidex:${multidexVersion}",
+            materialComponents: "com.google.android.material:material:${materialComponentsVersion}",
+            swipeRefreshLayout: "androidx.swiperefreshlayout:swiperefreshlayout:${swipeRefreshLayoutVersion}",
+            javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",
+            parceler: "org.parceler:parceler:${parcelerVersion}",
+            parcelerApi: "org.parceler:parceler-api:${parcelerVersion}",
+            saripaar: "com.mobsandgeeks:android-saripaar:${saripaarVersion}",
+            dart: "com.f2prateek.dart:dart:${dartVersion}",
+            dartProcessor: "com.f2prateek.dart:dart-processor:${dartVersion}",
+            dartAnnotation: "com.f2prateek.dart:dart-annotations:${dartVersion}",
+            henson: "com.f2prateek.dart:henson:${dartVersion}",
+            hensonProcessor: "com.f2prateek.dart:henson-processor:${dartVersion}",
+
+            // Firebase
+            firebaseDatabase: "com.google.firebase:firebase-database:${firebaseVersion}",
+            firebaseAuth: "com.google.firebase:firebase-auth:${firebaseVersion}",
+            firebaseAnalytics: "com.google.firebase:firebase-analytics:${firebaseAnalyticsVersion}",
+            firebaseStorage: "com.google.firebase:firebase-storage:${firebaseVersion}",
+            firebaseConfig: "com.google.firebase:firebase-config:${firebaseConfigVersion}",
+            firebaseMessaging: "com.google.firebase:firebase-messaging:${firebaseMessagingVersion}",
+            firebaseAppIndexing: "com.google.firebase:firebase-appindexing:${firebaseAppIndexingVersion}",
+
+            playServicesAppInvite: "com.google.android.gms:play-services-appinvite:${playServicesAppInviteVersion}",
+            playServicesAuth: "com.google.android.gms:play-services-auth:${playServicesAuthVersion}",
+            playServicesAds: "com.google.android.gms:play-services-ads:${playServicesAddsVersion}"
+
+    ]
+
+    globalTestDependencies = [
+            junit: "junit:junit:${jUnitVersion}",
+            mockito: "org.mockito:mockito-core:${mockitoVersion}"
+    ]
+}

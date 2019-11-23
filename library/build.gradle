@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+
+android {
+
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
+
+    dataBinding{
+        enabled = true
+    }
+
+    defaultConfig {
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode globalConfiguration["androidVersionCode"]
+    }
+
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+    implementation globalDependencies.rxJava
+    implementation globalDependencies.dagger
+    implementation globalDependencies.lombok
+    annotationProcessor globalDependencies.lombok
+    implementation globalDependencies.appCompat
+    implementation globalDependencies.materialComponents
+    implementation globalDependencies.swipeRefreshLayout
+}

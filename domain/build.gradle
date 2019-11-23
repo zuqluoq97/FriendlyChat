@@ -1,0 +1,14 @@
+apply plugin: 'java'
+apply plugin: 'jacoco'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies{
+    implementation globalDependencies.rxJava
+    implementation globalDependencies.lombok
+    annotationProcessor globalDependencies.lombok
+    implementation globalDependencies.javaxInject
+    testImplementation globalTestDependencies.junit
+    testImplementation globalTestDependencies.mockito
+}
