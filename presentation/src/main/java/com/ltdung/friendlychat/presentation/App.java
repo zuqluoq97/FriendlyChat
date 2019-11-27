@@ -1,6 +1,7 @@
 package com.ltdung.friendlychat.presentation;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.ltdung.friendlychat.data.manager.AuthManager;
@@ -34,6 +35,7 @@ public class App extends Application {
         networkManager.start();
 
         if (authManager.isSignedIn()) {
+            Log.d("LoginInUser", authManager.getCurrentUserId());
             FirebaseMessaging.getInstance().subscribeToTopic("user_" + authManager.getCurrentUserId());
         }
     }

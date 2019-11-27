@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.PopupMenu;
@@ -31,6 +32,7 @@ import dagger.Lazy;
 
 public class DialogActivity extends BaseDaggerActivity<DialogView, DialogPresenter, ActivityDialogBinding> {
 
+    private static final String TAG = "DialogActivity";
     public static final String KEY_PEER_ID = "peer_id";
 
     @Inject
@@ -110,8 +112,9 @@ public class DialogActivity extends BaseDaggerActivity<DialogView, DialogPresent
     }
 
     private void showMessagePopup(MessageModel message, int position){
-        View item = binding.rvUsers.getChildAt(position).findViewById(R.id.tv_text);
-        PopupMenu popupMenu = new PopupMenu(item.getContext(), item);
+        View item = binding.rvUsers.getLayoutManager().findViewByPosition(position);
+        View text = item.findViewById(R.id.tv_text);
+        PopupMenu popupMenu = new PopupMenu(text.getContext(), text);
         boolean findItemVisibility = message.getSenderId().equals(presenter.getAuthManager().getCurrentUserId())
                 && position == messageAdapter.getItemCount() - 1;
         popupMenu.inflate(R.menu.menu_message_item);
@@ -119,7 +122,7 @@ public class DialogActivity extends BaseDaggerActivity<DialogView, DialogPresent
         popupMenu.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.item_delete:
-                    presenter.editMessage(message);
+                    presenter.deleteMessage(message);
                     return true;
                 case R.id.item_edit:
                     showEditMessageDialog(message);
@@ -129,11 +132,10 @@ public class DialogActivity extends BaseDaggerActivity<DialogView, DialogPresent
             }
         });
         popupMenu.show();
-
     }
 
     private void showEditMessageDialog(MessageModel messageModel){
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this, R.style.MyDialogTheme);
         final EditText editText = new EditText(this);
         editText.setText(messageModel.getText());
         dialog.setView(editText);
@@ -142,8 +144,7 @@ public class DialogActivity extends BaseDaggerActivity<DialogView, DialogPresent
             presenter.editMessage(messageModel);
         });
         dialog.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {});
-        dialog.show();
-
+        dialog.create().show();
     }
 
     private void initMessagesRecyclerView() {

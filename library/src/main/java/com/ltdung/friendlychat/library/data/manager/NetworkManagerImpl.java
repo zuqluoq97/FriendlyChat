@@ -26,10 +26,10 @@ public class NetworkManagerImpl extends BroadcastReceiver implements NetworkMana
     @Override
     public void onReceive(Context context, Intent intent) {
         if(isNetworkAvailable()){
+            // Prevent double calling in case of onLoadFinished in BaseActivity
             if(!isInitialStickyBroadcast()){
                 for(Listener listener: listeners.values()){
                     if(listener != null){
-                        Log.d("Network Manager Receive", listener.toString());
                         listener.onNetworkAvailable();
                     }
                 }

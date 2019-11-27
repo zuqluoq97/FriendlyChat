@@ -23,6 +23,6 @@ public class EditMessage extends UseCase<MessageDto, Void, MessageRepository> {
 
     @Override
     protected Observable<Void> buildObservable(MessageDto messageDto) {
-        return repository.deleteMessage(messageDto, messenger);
+        return repository.editMessage(messageDto, messenger);
     }
 }

@@ -2,6 +2,7 @@ package com.ltdung.friendlychat.data.manager;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -81,21 +82,22 @@ public class AuthManagerImpl implements AuthManager {
     @Override
     public String getCurrentUserId() {
         String id = null;
-        if(!isSignedIn()){
+        if(isSignedIn()){
             id = auth.getCurrentUser().getUid();
         }
         return id;
     }
 
     private void saveUser(FirebaseUser user, Subscriber<String> subscriber, CreateUser createUser){
+        Log.d("FirebaseUser", user.getDisplayName());
         UserDto userDto = new UserDto();
         userDto.setId(user.getUid());
         if(!TextUtils.isEmpty(user.getDisplayName())){
-            String[] name = user.getDisplayName().split("");
+            String[] name = user.getDisplayName().split(" ");
             userDto.setFirstName(name[0]);
             userDto.setLastName(name[1]);
         }
-
+        Log.d("FirebaseUserToUserDto", userDto.toString());
         createUser.execute(userDto, subscriber);
     }
 

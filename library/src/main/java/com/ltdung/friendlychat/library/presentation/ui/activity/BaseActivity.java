@@ -87,6 +87,9 @@ public abstract class BaseActivity<VIEW extends View,
         presenter.attachView(view);
     }
 
+    /**
+     * Prepare stuffs after view loaded
+     */
     public void onLoadFinished() {
     }
 

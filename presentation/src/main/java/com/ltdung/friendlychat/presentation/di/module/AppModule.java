@@ -3,6 +3,8 @@ package com.ltdung.friendlychat.presentation.di.module;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.GoogleAuthCredential;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.ltdung.friendlychat.data.manager.AuthManager;
 import com.ltdung.friendlychat.data.manager.AuthManagerImpl;
 import com.ltdung.friendlychat.library.data.manager.NetworkManager;

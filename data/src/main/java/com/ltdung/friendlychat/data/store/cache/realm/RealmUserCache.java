@@ -5,7 +5,10 @@ import com.ltdung.friendlychat.data.entity.realm.RealmUserEntity;
 import com.ltdung.friendlychat.data.mapper.realm.RealmUserEntityMapper;
 import com.ltdung.friendlychat.data.store.cache.UserCache;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import io.realm.Realm;
 import rx.Observable;
@@ -61,4 +64,5 @@ public class RealmUserCache implements UserCache {
             realm1.copyToRealm(realmUserEntityMapper.map1(userEntityList));
         });
     }
+
 }

@@ -51,8 +51,27 @@ public class UsersPresenter extends BasePresenter<UsersView> {
     }
 
     @Override
-    public void refreshData() {
+    protected void onViewAttached() {
+        super.onViewAttached();
+        refreshData();
+    }
 
+    @Override
+    protected void onViewDetached() {
+        super.onViewDetached();
+        getUsers.unsubscribe();
+        getUser.unsubscribe();
+
+        if(signOutSubscriber != null){
+            signOutSubscriber.unsubscribe();
+            signOutSubscriber = null;
+        }
+    }
+
+    @Override
+    public void refreshData() {
+        retrieveCurrentUser();
+        retrieveUsers();
     }
 
     private void retrieveUsers(){

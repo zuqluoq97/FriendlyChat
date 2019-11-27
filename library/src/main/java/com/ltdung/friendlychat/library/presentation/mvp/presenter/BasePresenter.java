@@ -13,6 +13,7 @@ public abstract class BasePresenter<VIEW extends View> {
         this.networkManager = networkManager;
     }
 
+    // What is the purpose of View here?
     protected VIEW view;
 
     public void attachView(@NonNull VIEW view){

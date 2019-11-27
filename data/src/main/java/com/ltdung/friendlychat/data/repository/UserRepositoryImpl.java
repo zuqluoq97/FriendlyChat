@@ -1,5 +1,7 @@
 package com.ltdung.friendlychat.data.repository;
 
+import android.util.Log;
+
 import com.ltdung.friendlychat.data.entity.UserEntity;
 import com.ltdung.friendlychat.data.mapper.UserEntityDtoMapper;
 import com.ltdung.friendlychat.data.store.UserEntityStore;

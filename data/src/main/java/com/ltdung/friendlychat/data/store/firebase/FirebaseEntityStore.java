@@ -1,5 +1,7 @@
 package com.ltdung.friendlychat.data.store.firebase;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.FirebaseException;
@@ -47,11 +49,14 @@ public abstract class FirebaseEntityStore {
                                                                    T value,
                                                                    R successResponse){
         return Observable.create(subscriber -> {
+            Log.d("createIfNotExists", value.toString());
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot == null){
-                        postQuery(databaseReference, value, false, successResponse);
+                    Log.d("createIfNotExists", dataSnapshot.toString());
+                    if(dataSnapshot.getValue() == null){
+                        postQuery(databaseReference, value, false, successResponse)
+                                .subscribe(subscriber);
                     }else{
                         subscriber.onNext(successResponse);
                     }
@@ -105,6 +110,7 @@ public abstract class FirebaseEntityStore {
                                                           boolean newChild,
                                                           R successResponse){
         return Observable.create(subscriber -> {
+            Log.d("createIfNotExists", "postQuery");
             DatabaseReference reference = databaseReference;
             if(newChild){
                 if(value.getId() == null){

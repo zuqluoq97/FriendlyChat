@@ -1,5 +1,6 @@
 package com.ltdung.friendlychat.presentation.ui.viewholder;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 
@@ -13,6 +14,7 @@ import java.text.SimpleDateFormat;
 
 public class MessageViewHolder extends BaseViewHolder<ItemMessageBinding, MessageModel> {
 
+    private static final String TAG = "MessageViewHolder";
     private String currentUserId;
 
     private DialogView dialogView;
@@ -27,13 +29,17 @@ public class MessageViewHolder extends BaseViewHolder<ItemMessageBinding, Messag
 
     @Override
     public void bind(MessageModel messageModel, int position) {
+
         LinearLayout root = (LinearLayout) binding.getRoot();
         if(messageModel.getSenderId().equals(currentUserId)){
             root.setGravity(Gravity.RIGHT);
         }else{
             root.setGravity(Gravity.LEFT);
         }
-        root.setOnClickListener(view -> dialogView.showMessageMenu(messageModel, position));
+        root.setOnClickListener(view -> {
+            Log.d(TAG, String.valueOf(position));
+            dialogView.showMessageMenu(messageModel, position);
+        });
         binding.tvText.setText(messageModel.getText());
         binding.tvTime.setText(formatTime(messageModel.getTimestamp()));
     }

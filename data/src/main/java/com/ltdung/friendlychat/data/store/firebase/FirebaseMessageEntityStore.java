@@ -1,6 +1,7 @@
 package com.ltdung.friendlychat.data.store.firebase;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
@@ -24,6 +25,8 @@ import javax.net.ssl.HttpsURLConnection;
 import rx.Observable;
 
 public class FirebaseMessageEntityStore extends FirebaseEntityStore implements MessageEntityStore {
+
+    private static final String TAG = "FirebaseMessageEntityStore";
 
     public static final String KEY_FCM_SENDER_ID = "sender_id";
     public static final String KEY_FCM_TEXT = "text";
@@ -137,9 +140,11 @@ public class FirebaseMessageEntityStore extends FirebaseEntityStore implements M
         String peerId = message.getSenderId().equals(authManager.getCurrentUserId())
                 ? message.getReceiverId() : message.getSenderId();
         DatabaseReference reference = database.child(CHILD_USERS)
+                .child(authManager.getCurrentUserId())
                 .child(CHILD_MESSAGES)
                 .child(peerId)
                 .child(message.getId());
+        Log.d(TAG, "deleteMessage - Firebase database reference" + reference.toString());
         return delete(reference, null);
     }
 }

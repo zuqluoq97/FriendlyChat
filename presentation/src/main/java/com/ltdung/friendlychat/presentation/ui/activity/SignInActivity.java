@@ -104,7 +104,7 @@ public class SignInActivity extends BaseDaggerActivity<SignInView, SignInPresent
 
     private void googleApiClientSignOut() {
         try {
-            Auth.GoogleSignInApi.signOut(googleApiClient);
+            Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(status -> Log.d("Google Api Client signed out", status.toString()));
         } catch (Exception e) {
         }
     }

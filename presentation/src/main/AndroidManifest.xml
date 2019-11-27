@@ -33,7 +33,8 @@
 
         <activity android:name=".ui.activity.SignInActivity"/>
 
-        <activity android:name=".ui.activity.DialogActivity"/>
+        <activity android:name=".ui.activity.DialogActivity"
+            android:windowSoftInputMode="adjustPan"/>
 
         <activity android:name=".ui.activity.UsersActivity"/>
 

@@ -80,6 +80,7 @@ public class DialogPresenter extends BasePresenter<DialogView> {
                     @Override
                     public void onNext(Void aVoid) {
                         super.onNext(aVoid);
+                        view.clearInput();
                         view.hideProgress();
                     }
 
@@ -132,7 +133,8 @@ public class DialogPresenter extends BasePresenter<DialogView> {
 
     @Override
     public void refreshData() {
-
+        getMessages();
+        getPeerUser();
     }
 
     @Override

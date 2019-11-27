@@ -1,5 +1,7 @@
 package com.ltdung.friendlychat.presentation.mvp.presenter;
 
+import android.util.Log;
+
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.ltdung.friendlychat.data.manager.AuthManager;
@@ -57,6 +59,7 @@ public class SignInPresenter extends BasePresenter<SignInView> {
                 view.hideProgress();
 
                 FirebaseMessaging.getInstance().subscribeToTopic("user_" + userId);
+                Log.d("Google Sign Account", userId);
             }
 
             @Override
@@ -67,5 +70,6 @@ public class SignInPresenter extends BasePresenter<SignInView> {
             }
         };
         authManager.signInGoogle(googleSignInAccount, signInSubscriber, createUser);
+        Log.d("Google Sign in ID Token", googleSignInAccount.getIdToken());
     }
 }

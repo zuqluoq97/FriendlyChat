@@ -61,6 +61,10 @@ public class MessageRepositoryImpl extends RepositoryImpl<MessageEntityStore, Me
 
     @Override
     public Observable<Void> deleteMessage(MessageDto message, Messenger messenger) {
-        return null;
+        if(networkManager.isNetworkAvailable()){
+            return cloudStore.deleteMessage(entityDtoMapper.map1(message));
+        }else{
+            return Observable.<Void>empty().doOnCompleted(() -> messenger.showNoNetworkMessage());
+        }
     }
 }

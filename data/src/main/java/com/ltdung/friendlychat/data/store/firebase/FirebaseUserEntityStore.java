@@ -1,5 +1,7 @@
 package com.ltdung.friendlychat.data.store.firebase;
 
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.ltdung.friendlychat.data.entity.UserEntity;
